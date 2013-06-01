@@ -35,6 +35,7 @@ int processReturnStatus;//Filled on calls to wait and waitpid
 /* begin executeProcess */
 int executeProcess(char *path, char **argv)
 {
+	int status = 0;
 	pid_t pid;
 	int state = FG;
 	/* Check here if path is a file */
@@ -61,16 +62,10 @@ int executeProcess(char *path, char **argv)
 			kill(0, SIGCONT);
 			unixError("exec failed");
 		}
-	}
+	}//end of child context
 	addToJobList(pid, state);
 	if(isBg == false){
-		fprintf(stderr, "Is it blocking here?");
-		pause();/*POTENTIAL BUG: If child terminates before 
-				parent starts, this will cause the shell
-				to hang 
-				The whole system of handling children needs
-				to be reconsidered*/
-		fprintf(stderr, "test\n");
+		waitpid(pid, &status, 0);
 	}
 	return PROCESS_CREATED;
 }
