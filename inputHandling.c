@@ -30,7 +30,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 /* Prototypes section */
 static inline bool isShellCommand(const char *userInput);
-static void executeCommand(char *userInput);
+static int executeCommand(char *userInput);
 void printHelp(void);
 static inline void handleFgCommand(char *userInput);
 static inline void handleBgCommand(char *userInput);
@@ -47,8 +47,7 @@ void parseInput(char *userInput)
 	while(*userInput && isblank(*userInput))//Ignore leading blanks
 		userInput++;
 
-	if(isShellCommand(userInput)){
-		executeCommand(userInput);
+	if(executeCommand(userInput) == 0){
 		return;
 	}
 
@@ -83,7 +82,9 @@ static inline bool isShellCommand(const char *userInput)
 {
 	/* According to the requirments, shell executes progams using
 	their paths or built-in	commands; so if we don't have a path
-	we simply return TRUE */
+	we simply return TRUE 
+	Be careful that new requirments allow programs to be run if they're 
+	in the PATH variable so paths might not be fully specified*/
 	if(userInput[0] == '/'|| (userInput[0] == '.' && userInput[1] == '/'))
 		return false;
 	return true;
@@ -109,8 +110,9 @@ void printHelp(void)
 /* end printHelp */
 
 /* begin executeCommand */
-/* Executes the built-in shell commands */
-static void executeCommand(char *userInput)
+/* Executes the built-in shell commands
+return 0 on success and -1 if it's not a command */
+static int executeCommand(char *userInput)
 {
 
 	if(strcmp(userInput, "quit") == 0 || strcmp(userInput, "exit")== 0)
@@ -128,9 +130,10 @@ static void executeCommand(char *userInput)
 	else if(strncmp(userInput, "help", 4) == 0)
 		printHelp();
 	else if(strcmp(userInput, "") == 0)
-		return;
+		return 0;
 	else
-		printf("Command : '%s' does not exist\n", userInput);	
+		return -1;	
+	return 0;
 }
 /* ends executeCommand */
 

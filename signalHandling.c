@@ -34,7 +34,7 @@ void sigchldHandler(int signum)
 		if(WIFEXITED(processReturnStatus))
 			removeFromJobList(pid);
 		else if(WIFSIGNALED(processReturnStatus)){
-			printf("The offending signal is %d\n", WTERMSIG(processReturnStatus));
+			printf("The offending signal is %d\n", WTERMSIG(processReturnStatus));//this is not signal safe..you should use write instead
 			removeFromJobList(pid);
 		}
 		if(WIFSTOPPED(processReturnStatus)){
