@@ -54,7 +54,7 @@ int executeProcess(char *path, char **argv)
 		sigfillset(new);/* new has all signals as blocked now*/
 		if((sigprocmask(SIG_UNBLOCK, new, NULL)) < 0)
 			unixError("sigprocmask failed"); 
-		if(execv(path, argv) < 0){
+		if(execvp(path, argv) < 0){
 			//Due to the failer, myShell will keep at pause() although the process never execed 
 			//Thus we will send myShell a SIGCONT to get it out of the pause()
 			
@@ -66,6 +66,7 @@ int executeProcess(char *path, char **argv)
 	addToJobList(pid, state);
 	if(isBg == false){
 		waitpid(pid, &status, 0);
+		removeFromJobList(pid);
 	}
 	return PROCESS_CREATED;
 }
