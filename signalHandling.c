@@ -40,6 +40,8 @@ void sigchldHandler(int signum)
 		if(WIFSTOPPED(processReturnStatus)){
 			kill(0, SIGCONT);//Just to make sure myShell is not paused()
 			int index = findProcessIndex(pid);
+			if(index < 0)
+				return;
 			jobList[index].state = ST;	
 		}
 	}

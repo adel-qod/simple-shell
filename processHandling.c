@@ -65,8 +65,15 @@ int executeProcess(char *path, char **argv)
 	}//end of child context
 	addToJobList(pid, state);
 	if(isBg == false){
-		waitpid(pid, &status, 0);
-		removeFromJobList(pid);
+		waitpid(pid, &status, WUNTRACED);
+		if(WIFEXITED(status))
+			removeFromJobList(pid);
+		if(WIFSTOPPED(status))
+		{
+			printf("test\n");
+			int index = findProcessIndex(pid);
+			jobList[index].state = ST;
+		}
 	}
 	return PROCESS_CREATED;
 }
