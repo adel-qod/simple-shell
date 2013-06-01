@@ -1,6 +1,6 @@
 *SIMPLE SHELL READ ME FILE*
 
-This is a learning project; the whole purpose of this shell is educational; by leaving it like this I hope anyone who is trying to learn 
+This is a learning project; the whole purpose of this shell is educational; by leaving it like this I hope anyone who is trying to learn how to build their own shell or learn about some simple concepts in it (like signals or parent/child proceses) will benifit from it. 
 
 Almost all of the code and the documentation is gonna be under BSD-2.
 
