@@ -19,7 +19,7 @@ Functional requirements:
 	f- help prints the help list
 5- Shell called with arguments:
 	a- sish -h : prints a list of the built-in commands and how to use it
-
+6- Shell now allows the execution of programs found in the PATH env variable
 
 Non-functional requirements:
 
