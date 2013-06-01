@@ -1,0 +1,46 @@
+IMPORTANT NOTE:
+Most of the requirements are actually taken from a CMU lab for a class called
+Introduction to Computer Systems 
+I may add whatever more I see I fit
+
+Functional requirements:
+1- The command line typed by the user should consist of a name and zero or more arguments, all separated by one or more spaces. If name is a built-in command, then the shell should handle it immediately and wait for the next command line. Otherwise, the shell should assume that name is the path of an executable file, which it loads and runs in the context of an initial child process (In this context, the term job refers to this initial child process).
+2- Given a path to an executable file followed by a & sign, it should run it in the background.
+3- When running a given task on the foreground:
+	a- Pressing Ctr+C sends SIGINT to the task and all its children
+	b- Pressing Ctrl+Z sends SIGSTP to the task and all its children.
+4- Shell accepts the following commands:
+	a- jobs lists all current jobs
+	b- quit(or exit)  terminates the shell
+	c- bg <job> command restarts <job> by sending it a SIGCONT signal, and then
+     runs it in the background. The <job> argument can be either a PID or a JID.
+	d- The fg <job> command restarts <job> by sending it a SIGCONT signal, and then runs                it in the foreground. The <job> argument can be either a PID or a JID.
+	e- clear resets the terminal screen
+	f- help prints the help list
+5- Shell called with arguments:
+	a- sish -h : prints a list of the built-in commands and how to use it
+
+
+Non-functional requirements:
+
+1- Each job can be identified by either a process ID (PID) or a job ID (JID), which is a positive integer assigned by shell.
+JIDs should be denoted on the command line by the prefix ’%’. 
+For example, “%5” denotes JID 5, and “5” denotes PID 5.
+2- The shell should reap all of its zombie children. 
+If any job terminates because it receives a signal that it didn’t catch, then tsh should recognize this event and print a message with the job’s PID and a description of the offending signal.
+
+
+****************************COPYRIGHTS AND LICENSE****************************
+
+Copyright (c) 2013, Mhd Adel Al Qodamni
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+
+Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

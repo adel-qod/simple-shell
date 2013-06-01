@@ -1,0 +1,32 @@
+
+
+The code is organized as follows:
+
+main.c: contains nothing but the main function which sets some signal handlers and then starts calling the shell functions to parse the user input
+
+signalHandling.c: This file contains the signal handler functions registered by the main.
+
+inputHandling.c: This file contains all the functions related to input handling, including the function that parses the commands and the functions that execute the built in commands 
+
+processHandling.c: This file contains the functions related to maintaining jobs and to run/terminate/resume process/jobs
+A job is defined as an executable called by the user along with all its children
+
+sysCallsWrapper.c: A file that contains wrappers for common system calls and the signal function, the reasons why these wrappers exist is in the file itself but generally the idea is to avoid potenial bugs 
+
+stringUtils.c: contains mainly two exported functions, one is count words which and the other is a split function that splits a string in an array.
+
+
+****************************COPYRIGHTS AND LICENSE****************************
+
+Copyright (c) 2013, Mhd Adel Al Qodamni
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+
+Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
