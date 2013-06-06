@@ -1,7 +1,7 @@
 
 
-#ifndef _SYSCALLSWRAPPER_H_
-#define _SYSCALLSWRAPPER_H_
+#ifndef SHELL_SYSCALLSWRAPPER_H
+#define SHELL_SYSCALLSWRAPPER_H
 #include <sys/types.h>
 typedef void handler_t(int);
 handler_t *Signal(int signum, handler_t *handler);
