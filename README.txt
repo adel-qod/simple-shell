@@ -10,8 +10,7 @@ If you find anything worth changing(i.e a huge bug that needs to be fixed or peo
 
 
 My email:
-mgalqodmani12@cit.just.edu.jo
-
+mpcadel@gmail.com
 
 For the requirments: Check the file reqs.txt
 For a general explanation of how things are organized: Check code_doc.txt
